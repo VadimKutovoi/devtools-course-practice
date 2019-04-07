@@ -34,10 +34,11 @@ public:
     uint getAvgMark(std::string first_name, std::string last_name, std::string subject_name); // Returns avg mark of sudent of specified subject
 
 private:
+    uint size = 0;
     std::vector<student> table;
 
     bool checkStdExist(std::string first_name, std::string last_name); 
-    uint getRecordPos(std::string first_name, std::string last_name);
+    uint getRecordPos(std::string first_name, std::string last_name)
 };
 
 
