@@ -25,7 +25,7 @@ inline bool Sdb::RemoveStudent(std::string& last_name) {
     }
 }
 
-inline bool Sdb::AddMark(std::string& last_name, uint mark) {
+inline bool Sdb::AddMark(std::string& last_name, uint& mark) {
     auto rec = table.find(last_name);
 
     if (rec == table.end())
