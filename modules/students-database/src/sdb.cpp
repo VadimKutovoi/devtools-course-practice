@@ -1,15 +1,39 @@
+// Copyright 2019 Kutovoi Vadim
+
 #include "../include/sdb.h"
 
-sdb::sdb(uint table_size = 1) {
-    size = table_size;
-	std::vector<students> tmp(table_size);
-	table = tmp;
+bool Sdb::FindStudent(std::string& last_name) {
+	auto rec = table.find(*last_name);
+
+	if (rec == table.end())
+		return false;
+	else
+		return true;
 }
 
-bool checkStdExist(std::string first_name, std::string last_name) {
-    for (uint i = 0; i < size; i++) {
-        if (table[i].last_name == last_name && table[i].first_name == first_name)
-            return true;
-    }
-    return false;
+bool Sdb::AddStudent(std::string& first_name, std::string& last_name) {
+	student st = { *first_name };
+
+	return table.insert(std::make_pair(*last_name, st)).second;
+}
+
+bool Sdb::RemoveStudent(std::string& last_name) {
+	auto rec = table.find(*last_name);
+
+	if (rec == table.end())
+		return false;
+	else {
+		table.erase(itr);
+		return true;
+	}
+}
+
+bool Sdb::AddMark(std::string& last_name, std::string& subject_name, uint mark) {
+	auto rec = table.find(*last_name);
+
+	if (rec == table.end())
+		return false;
+	else {
+	
+	}
 }
