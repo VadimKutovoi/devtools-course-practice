@@ -1,140 +1,96 @@
-// Copyright 2017 Korniakov Kirill
+// Copyright 2019 Kutovoi Vadim
 
 #include <gtest/gtest.h>
 
 #include "include/sdb.h"
 
-TEST_F(ComplexNumberTest, Can_Create_With_Real_And_Imaginary) {
-    // Arrange
-    double re = 26.0;
-    double im = 20.0;
 
+TEST(StudentDataBaseTest,
+    Can_Find_Existing_Record) {
+    // Arrange
+    
     // Act
-    ComplexNumber z(re, im);
 
     // Assert
-    EXPECT_NEAR(re, z.getRe(), ComplexNumberTest::epsilon);
-    EXPECT_NEAR(im, z.getIm(), ComplexNumberTest::epsilon);
 }
 
-TEST_F(ComplexNumberTest, Can_Create_Via_Copying) {
+TEST(StudentDataBaseTest,
+    Cant_Find_Non_Existing_Record) {
     // Arrange
-    ComplexNumber z(26.0, 20.0);
 
     // Act
-    ComplexNumber expected_z = z;
 
     // Assert
-    EXPECT_EQ(expected_z, z);
 }
 
-TEST_F(ComplexNumberTest, Can_Set_Real) {
+TEST(StudentDataBaseTest,
+    Can_Add_Record) {
     // Arrange
-    ComplexNumber z;
-    double re = 20.0;
 
     // Act
-    z.setRe(re);
 
     // Assert
-    EXPECT_NEAR(re, z.getRe(), ComplexNumberTest::epsilon);
 }
 
-TEST_F(ComplexNumberTest, Can_Set_Imaginary) {
+TEST(StudentDataBaseTest,
+    Cant_Add_Existing_Record) {
     // Arrange
-    ComplexNumber z;
-    double im = 26.0;
 
     // Act
-    z.setIm(im);
 
     // Assert
-    EXPECT_NEAR(im, z.getIm(), ComplexNumberTest::epsilon);
 }
 
-TEST_F(ComplexNumberTest, Can_Add_Complex) {
+TEST(StudentDataBaseTest,
+    Can_Remove_Record) {
     // Arrange
-    ComplexNumber z1(26.0, 14.0);
-    ComplexNumber z2(1.0, 7.0);
 
     // Act
-    ComplexNumber z = z1 + z2;
 
     // Assert
-    ComplexNumber expected_z(27.0, 21.0);
-    EXPECT_EQ(expected_z, z);
 }
 
-TEST_F(ComplexNumberTest, Can_Difference_Complex) {
+TEST(StudentDataBaseTest,
+    Cant_Remove_Non_Existing_Record) {
     // Arrange
-    ComplexNumber z1(26.0, 14.0);
-    ComplexNumber z2(1.0, 1.0);
 
     // Act
-    ComplexNumber z = z2 - z1;
 
     // Assert
-    ComplexNumber expected_z(-25.0, -13.0);
-    EXPECT_EQ(expected_z, z);
 }
 
-TEST_F(ComplexNumberTest, Can_Multiplication_Complex) {
+TEST(StudentDataBaseTest,
+    Can_Get_Avg_Mark) {
     // Arrange
-    ComplexNumber z1(5.0, 3.0);
-    ComplexNumber z2(4.0, 6.0);
 
     // Act
-    ComplexNumber z = z1 * z2;
 
     // Assert
-    ComplexNumber expected_z(2.0, 42.0);
-    EXPECT_EQ(expected_z, z);
 }
 
-TEST_F(ComplexNumberTest, Can_Division_Complex) {
+TEST(StudentDataBaseTest,
+    Can_Get_Num_Of_Records) {
     // Arrange
-    ComplexNumber z1(15.0, 20.0);
-    ComplexNumber z2(27.0, 30.0);
 
     // Act
-    ComplexNumber z = z2 / z1;
 
     // Assert
-    ComplexNumber expected_z(1.608, -0.144);
-    EXPECT_EQ(expected_z, z);
 }
 
-TEST_F(ComplexNumberTest, Do_Throw_When_Division_By_Zero) {
+TEST(StudentDataBaseTest,
+    Can_Get_Number_Of_Good_Students) {
     // Arrange
-    ComplexNumber z1(0.0, 0.0);
-    ComplexNumber z2(26.0, 14.0);
 
-    // Act & Assert
-    EXPECT_THROW(z2 / z1, std::string);
+    // Act
+
+    // Assert
 }
 
-TEST_F(ComplexNumberTest, Number_Is_Equal_To_Itself) {
+TEST(StudentDataBaseTest,
+    Can_Get_Number_Of_Bad_Students) {
     // Arrange
-    ComplexNumber z(26.0, 14.0);
 
-    // Act & Assert
-    EXPECT_TRUE(z == z);
-}
+    // Act
 
-TEST_F(ComplexNumberTest, Equal_Numbers_Are_Equal) {
-    // Arrange
-    ComplexNumber z1(26.0, 14.0);
-    ComplexNumber z2(26.0, 14.0);
-
-    // Act & Assert
-    EXPECT_EQ(z1, z2);
-}
-
-TEST_F(ComplexNumberTest, Different_Numbers_Not_Equal) {
-    // Arrange
-    ComplexNumber z1(26.0, 14.0);
-    ComplexNumber z2(26.1, 14.1);
-
-    // Act & Assert
-    EXPECT_TRUE(z1 != z2);
+    // Assert
 }

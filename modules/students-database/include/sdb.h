@@ -5,45 +5,40 @@
 #include <ctime>
 
 
-struct subject
-{
-    std::string name;
-    std::vector<uint> marks;
-};
-
 struct student
 {
     std::string first_name;
-    std::vector<subject> subjects;
+    std::vector<int> marks;
 };
 
 
-#ifndef SDB
-#define SDB
+#ifndef STUDENT_DATA_BASE
+#define STUDENT_DATA_BASE
+
+using uint = unsigned int;
 
 class Sdb
 {
 public:
     Sdb() = default;
-	Sdb(Sdb&&) = default;
+    Sdb(Sdb&&) = default;
 
-	bool IsStudentExists(std::string&);
-    bool AddStudent(std::string&, std::string&);
-    bool RemoveStudent(std::string&);
-    bool AddMark(std::string&, std::string&, uint);
+    inline bool AddStudent(std::string& first_name, std::string& last_name);
+    inline bool RemoveStudent(std::string&);
+    inline bool AddMark(std::string&, uint);
 
-	uint GetAvgMark(std::string&);
-    uint GetAvgMark(std::string&, std::string&);
+    inline float GetAvgMark(std::string&);
+
+    inline uint GetNumberOfStudents();
+    inline uint GetNumberOfGoodStudents();
+    inline uint GetNumberOfBadStudents();
 
 private:
-	using uint = unsigned int;
+    uint size_ = 0;
 
-    uint size = 0;
-
-    std::unordered_map<string, student> table;
+    std::unordered_map<std::string, student> table;
 
     bool CheckStdExist(std::string&);
 };
-
 
 #endif
