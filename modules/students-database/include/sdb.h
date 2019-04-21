@@ -1,7 +1,9 @@
+// Copyright 2019 Kutovoi Vadim
+
+#include <unordered_map>
 #include <vector>
 #include <ctime>
 
-using uint = unsigned int;
 
 struct subject
 {
@@ -12,33 +14,35 @@ struct subject
 struct student
 {
     std::string first_name;
-    std::string last_name;
-    std::std::vector<subject> subjects;
+    std::vector<subject> subjects;
 };
 
 
 #ifndef SDB
 #define SDB
 
-class sdb
+class Sdb
 {
 public:
-    sdb(uint table_size = 1); // Creates vector with size table_size;
-    
-    bool addStudent(std::string first_name, std::string last_name); // Adds student to 
-    bool removeStudent(std::string first_name, std::string last_name); // Removes student
+    Sdb() = default;
+	Sdb(Sdb&&) = default;
 
-    bool addMark(std::string first_name, std::string last_name, std::string subject_name, uint mark); // Adds mark to specified subject
+	bool IsStudentExists(std::string&);
+    bool AddStudent(std::string&, std::string&);
+    bool RemoveStudent(std::string&);
+    bool AddMark(std::string&, std::string&, uint);
 
-    uint getAvgMark(std::string first_name, std::string last_name); // Returns global avg mark of student 
-    uint getAvgMark(std::string first_name, std::string last_name, std::string subject_name); // Returns avg mark of sudent of specified subject
+	uint GetAvgMark(std::string&);
+    uint GetAvgMark(std::string&, std::string&);
 
 private:
-    uint size = 0;
-    std::vector<student> table;
+	using uint = unsigned int;
 
-    bool checkStdExist(std::string first_name, std::string last_name); 
-    uint getRecordPos(std::string first_name, std::string last_name)
+    uint size = 0;
+
+    std::unordered_map<string, student> table;
+
+    bool CheckStdExist(std::string&);
 };
 
 
